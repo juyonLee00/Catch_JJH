@@ -16,7 +16,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += time.deltaTime;
+        time += Time.deltaTime;
         timeTxt.text = time.ToString("N2");
     }
 }
