@@ -8,6 +8,7 @@ public class gameManager : MonoBehaviour
     public Text timeTxt;
     float time;
     public GameObject card;
+    public GameObject retryBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -28,5 +29,16 @@ public class gameManager : MonoBehaviour
     {
         time += Time.deltaTime;
         timeTxt.text = time.ToString("N2");
+
+        if(time > 60.0f)
+        {
+            Time.timeScale = 0.0f;
+            retryBtn.SetActive(true);
+        }
+
+        if(retryBtn.activeSelf == false)
+        {
+            Time.timeScale = 1.0f;
+        }
     }
 }
