@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class nextpageBtn : MonoBehaviour
+public class nextpgBtn : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class nextpageBtn : MonoBehaviour
         
     }
 
-    public void toMain()
+    public void ToMain()   
     {
         SceneManager.LoadScene("MainScene");
     }
