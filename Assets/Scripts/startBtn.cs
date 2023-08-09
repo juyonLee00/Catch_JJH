@@ -19,6 +19,6 @@ public class startBtn : MonoBehaviour
 
     public void GameStart()
     {
-        SceneManager.LoadScene("InfoScene");
+        SceneManager.LoadScene("TeamScene");
     }
 }
