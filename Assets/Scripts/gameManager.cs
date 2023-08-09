@@ -24,21 +24,18 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        timeTxt.text = time.ToString("N2");
-
-        if(time > 60.0f)
+        if (time < 60.0f)
         {
-            Time.timeScale = 0.0f;
+            time += Time.deltaTime;
+            timeTxt.text = time.ToString("N2");
+        }
+
+        else
+        {
             retryBtn.SetActive(true);
         }
-
-        if(retryBtn.activeSelf == false)
-        {
-            Time.timeScale = 1.0f;
-        }
+        
     }
 }
