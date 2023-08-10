@@ -9,7 +9,12 @@ public class gameManager : MonoBehaviour
     public GameObject card;
     public GameObject retryBtn;
 
-    // Start is called before the first frame update
+    public static gameManager I;
+
+    void Awake()
+    {
+        I = this;    
+    }
     void Start()
     {
         string[] cardIdx = new string[] {"jy0", "jy1", "jy2", "jy3", "jb0", "jb1", "jb2", "jb3", "hr0", "hr1", "hr2", "hr3", "rt", "rt", "rt", "rt"};
