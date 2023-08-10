@@ -14,6 +14,9 @@ public class gameManager : MonoBehaviour
     public GameObject firstCard;
     public GameObject secondCard;
 
+    public AudioClip match;
+    public AudioSource audioSource;
+
     int pairNum = 0;
     public int openCardNum = 0;
     public float openCardTime = 0.0f;
@@ -70,6 +73,7 @@ public class gameManager : MonoBehaviour
 
     public void isMatched()
     {
+        
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
 
@@ -85,6 +89,8 @@ public class gameManager : MonoBehaviour
 
         else if(firstCardName == secondCardName)
         {
+            audioSource.PlayOneShot(match);
+
             correctCard(firstCard);
             correctCard(secondCard);
             pairNum += 1;
