@@ -16,6 +16,7 @@ public class gameManager : MonoBehaviour
 
     public GameObject endPanel;
     public Text curScoreTxt;
+    public Text maxScoreTxt;
 
     public AudioClip match;
     public AudioClip fail;
@@ -33,6 +34,8 @@ public class gameManager : MonoBehaviour
     }
     void Start()
     {
+        Time.timeScale =1f;
+
         string[] cardIdx = new string[] {"jy0", "jy1", "jy2", "jy3", "jb0", "jb1", "jb2", "jb3", "hr0", "hr1", "hr2", "hr3", "rt", "rt", "rt", "rt"};
         cardIdx = cardIdx.OrderBy(item => Random.Range(-1.0f, 1.0f)).ToArray();
         for (int i =0; i<16; i++)  
@@ -68,6 +71,20 @@ public class gameManager : MonoBehaviour
             Time.timeScale = 0f;
             endPanel.SetActive(true);
             curScoreTxt.text = time.ToString("N2");
+
+            if (PlayerPrefs.HasKey("bestscore") == false)
+            {
+                PlayerPrefs.SetFloat("bestscore", time);
+            }
+            else
+            {
+                if(time < PlayerPrefs.GetFloat("bestscore"))
+                {
+                    PlayerPrefs.SetFloat("bestscore",time);
+                }
+            }
+            float maxScore = PlayerPrefs.GetFloat("bestscore");
+            maxScoreTxt.text = maxScore.ToString("N2");
             //SceneManager.LoadScene("EndScene");
         }
 
