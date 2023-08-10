@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class card : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class card : MonoBehaviour
     {
         transform.Find("front").gameObject.SetActive(true);
         transform.Find("back").gameObject.SetActive(false);
+        gameManager.I.openCardNum += 1;
+        gameManager.I.openCardTime = float.Parse(gameManager.I.timeTxt.text);
 
         if(gameManager.I.firstCard == null)
         {

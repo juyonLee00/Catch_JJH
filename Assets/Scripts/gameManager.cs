@@ -15,6 +15,8 @@ public class gameManager : MonoBehaviour
     public GameObject secondCard;
 
     int pairNum = 0;
+    public int openCardNum = 0;
+    public float openCardTime = 0.0f;
 
     public static gameManager I;
 
@@ -57,6 +59,13 @@ public class gameManager : MonoBehaviour
         {
             SceneManager.LoadScene("EndScene");
         }
+
+        if(openCardNum != 2 && (time - openCardTime)>5)
+        {
+            inCorrectCard(firstCard);
+            openCardNum = 0;
+            openCardTime = 0.0f;
+        }
     }
 
     public void isMatched()
@@ -69,32 +78,33 @@ public class gameManager : MonoBehaviour
 
         if(firstCardName == "rt" || secondCardName == "rt")
         {
-            wrongCard();
+            inCorrectCard(firstCard);
+            inCorrectCard(secondCard);
         }
 
         else if(firstCardName == secondCardName)
         {
-            correctCard();
+            correctCard(firstCard);
+            correctCard(secondCard);
         }
 
         else
         {
-            wrongCard();
+            inCorrectCard(firstCard);
+            inCorrectCard(secondCard);
         }
         firstCard = null;
         secondCard = null;
     }
 
-    void wrongCard()
+    void inCorrectCard(GameObject card)
     {
-        firstCard.GetComponent<card>().closeCard();
-        secondCard.GetComponent<card>().closeCard();
+        card.GetComponent<card>().closeCard();
     }
 
-    void correctCard()
+    void correctCard(GameObject card)
     {
-        firstCard.GetComponent<card>().destroyCard();
-        secondCard.GetComponent<card>().destroyCard();
+        card.GetComponent<card>().destroyCard();
         pairNum += 1;
     }
 }
