@@ -28,7 +28,7 @@ public class card : MonoBehaviour
         {
             gameManager.I.firstCard = gameObject;
         }
-        else
+        else 
         {
             gameManager.I.secondCard = gameObject;
             gameManager.I.isMatched();

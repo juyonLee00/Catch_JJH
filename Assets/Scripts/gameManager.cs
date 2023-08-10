@@ -60,11 +60,10 @@ public class gameManager : MonoBehaviour
             SceneManager.LoadScene("EndScene");
         }
 
-        if(openCardNum != 2 && (time - openCardTime)>5)
+        if(openCardNum == 1 && (time - openCardTime) > 5)
         {
-            inCorrectCard(firstCard);
-            openCardNum = 0;
-            openCardTime = 0.0f;
+            incorrectCard(firstCard);
+            InitializeCurrentOpenCard();
         }
     }
 
@@ -78,26 +77,30 @@ public class gameManager : MonoBehaviour
 
         if(firstCardName == "rt" || secondCardName == "rt")
         {
-            inCorrectCard(firstCard);
-            inCorrectCard(secondCard);
+            incorrectCard(firstCard);
+            incorrectCard(secondCard);
+            InitializeCurrentOpenCard();
         }
 
         else if(firstCardName == secondCardName)
         {
             correctCard(firstCard);
             correctCard(secondCard);
+            pairNum += 1;
+            InitializeCurrentOpenCard();
         }
 
         else
         {
-            inCorrectCard(firstCard);
-            inCorrectCard(secondCard);
+            incorrectCard(firstCard);
+            incorrectCard(secondCard);
+            InitializeCurrentOpenCard();
         }
         firstCard = null;
         secondCard = null;
     }
 
-    void inCorrectCard(GameObject card)
+    void incorrectCard(GameObject card)
     {
         card.GetComponent<card>().closeCard();
     }
@@ -105,7 +108,13 @@ public class gameManager : MonoBehaviour
     void correctCard(GameObject card)
     {
         card.GetComponent<card>().destroyCard();
-        pairNum += 1;
+    }
+
+    void InitializeCurrentOpenCard()
+    {
+        openCardNum = 0;
+        openCardTime = 0.0f;
+        
     }
 }
 
