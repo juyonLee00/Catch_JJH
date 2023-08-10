@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
     public Text timeTxt;
     float time;
+
     public GameObject card;
     public GameObject retryBtn;
 
     public GameObject firstCard;
     public GameObject secondCard;
+
+    int pairNum = 0;
 
     public static gameManager I;
 
@@ -48,7 +52,11 @@ public class gameManager : MonoBehaviour
         {
             retryBtn.SetActive(true);
         }
-        
+
+        if(pairNum == 4)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
     }
 
     public void isMatched()
@@ -87,6 +95,7 @@ public class gameManager : MonoBehaviour
     {
         firstCard.GetComponent<card>().destroyCard();
         secondCard.GetComponent<card>().destroyCard();
+        pairNum += 1;
     }
 }
 
