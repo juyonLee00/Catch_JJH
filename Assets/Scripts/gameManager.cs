@@ -53,7 +53,7 @@ public class gameManager : MonoBehaviour
             retryBtn.SetActive(true);
         }
 
-        if(pairNum == 4)
+        if(pairNum == 6)
         {
             SceneManager.LoadScene("EndScene");
         }
