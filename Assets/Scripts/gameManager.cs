@@ -14,6 +14,9 @@ public class gameManager : MonoBehaviour
     public GameObject firstCard;
     public GameObject secondCard;
 
+    public GameObject endPanel;
+    public Text curScoreTxt;
+
     public AudioClip match;
     public AudioClip fail;
     public AudioSource audioSource;
@@ -48,6 +51,7 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
+
         if (time < 60.0f)
         {
             time += Time.deltaTime;
@@ -61,7 +65,10 @@ public class gameManager : MonoBehaviour
 
         if(pairNum == 6)
         {
-            SceneManager.LoadScene("EndScene");
+            Time.timeScale = 0f;
+            endPanel.SetActive(true);
+            curScoreTxt.text = time.ToString("N2");
+            //SceneManager.LoadScene("EndScene");
         }
 
         if(openCardNum == 1 && (time - openCardTime) > 5)
@@ -84,7 +91,7 @@ public class gameManager : MonoBehaviour
         if(firstCardName == "rt" || secondCardName == "rt")
         {
             audioSource.PlayOneShot(fail);
-            
+
             incorrectCard(firstCard);
             incorrectCard(secondCard);
             InitializeCurrentOpenCard();
