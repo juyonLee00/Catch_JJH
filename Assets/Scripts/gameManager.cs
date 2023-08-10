@@ -1,15 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
     public Text timeTxt;
-    float time;
+    public float time;
+
     public GameObject card;
     public GameObject retryBtn;
 
-    // Start is called before the first frame update
+    public GameObject firstCard;
+    public GameObject secondCard;
+
+    int pairNum = 0;
+    public int openCardNum = 0;
+    public float openCardTime = 0.0f;
+
+    public static gameManager I;
+
+    void Awake()
+    {
+        I = this;    
+    }
     void Start()
     {
         string[] cardIdx = new string[] {"jy0", "jy1", "jy2", "jy3", "jb0", "jb1", "jb2", "jb3", "hr0", "hr1", "hr2", "hr3", "rt", "rt", "rt", "rt"};
@@ -40,7 +54,67 @@ public class gameManager : MonoBehaviour
         {
             retryBtn.SetActive(true);
         }
+
+        if(pairNum == 6)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
+
+        if(openCardNum == 1 && (time - openCardTime) > 5)
+        {
+            incorrectCard(firstCard);
+            InitializeCurrentOpenCard();
+            firstCard = null;
+        }
+    }
+
+    public void isMatched()
+    {
+        string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+        string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+
+        string firstCardName = firstCardImage.Substring(0, 2);
+        string secondCardName = secondCardImage.Substring(0, 2);
+
+        if(firstCardName == "rt" || secondCardName == "rt")
+        {
+            incorrectCard(firstCard);
+            incorrectCard(secondCard);
+            InitializeCurrentOpenCard();
+        }
+
+        else if(firstCardName == secondCardName)
+        {
+            correctCard(firstCard);
+            correctCard(secondCard);
+            pairNum += 1;
+            InitializeCurrentOpenCard();
+        }
+
+        else
+        {
+            incorrectCard(firstCard);
+            incorrectCard(secondCard);
+            InitializeCurrentOpenCard();
+        }
+        firstCard = null;
+        secondCard = null;
+    }
+
+    void incorrectCard(GameObject card)
+    {
+        card.GetComponent<card>().closeCard();
+    }
+
+    void correctCard(GameObject card)
+    {
+        card.GetComponent<card>().destroyCard();
+    }
+
+    void InitializeCurrentOpenCard()
+    {
+        openCardNum = 0;
+        openCardTime = 0.0f;
         
     }
 }
-
