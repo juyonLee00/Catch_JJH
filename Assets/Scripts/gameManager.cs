@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class gameManager : MonoBehaviour
 {
     public Text timeTxt;
-    float time;
+    public float time;
 
     public GameObject card;
     public GameObject retryBtn;
@@ -64,6 +64,7 @@ public class gameManager : MonoBehaviour
         {
             incorrectCard(firstCard);
             InitializeCurrentOpenCard();
+            firstCard = null;
         }
     }
 
@@ -117,4 +118,3 @@ public class gameManager : MonoBehaviour
         
     }
 }
-

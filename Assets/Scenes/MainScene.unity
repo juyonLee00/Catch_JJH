@@ -665,6 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeTxt: {fileID: 1861468271}
+  time: 0
   card: {fileID: 8355997446866031278, guid: d1b3f4497b4dc45a79b0faae4a51cd5d, type: 3}
   retryBtn: {fileID: 1766887557}
   firstCard: {fileID: 0}

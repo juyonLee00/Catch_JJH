@@ -22,7 +22,7 @@ public class card : MonoBehaviour
         transform.Find("front").gameObject.SetActive(true);
         transform.Find("back").gameObject.SetActive(false);
         gameManager.I.openCardNum += 1;
-        gameManager.I.openCardTime = float.Parse(gameManager.I.timeTxt.text);
+        gameManager.I.openCardTime = gameManager.I.time;
 
         if(gameManager.I.firstCard == null)
         {
