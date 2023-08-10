@@ -9,6 +9,9 @@ public class gameManager : MonoBehaviour
     public GameObject card;
     public GameObject retryBtn;
 
+    public GameObject firstCard;
+    public GameObject secondCard;
+
     public static gameManager I;
 
     void Awake()
@@ -46,6 +49,44 @@ public class gameManager : MonoBehaviour
             retryBtn.SetActive(true);
         }
         
+    }
+
+    public void isMatched()
+    {
+        string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+        string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+
+        string firstCardName = firstCardImage.Substring(0, 2);
+        string secondCardName = secondCardImage.Substring(0, 2);
+
+        if(firstCardName == "rt" || secondCardName == "rt")
+        {
+            wrongCard();
+        }
+
+        else if(firstCardName == secondCardName)
+        {
+            correctCard();
+        }
+
+        else
+        {
+            wrongCard();
+        }
+        firstCard = null;
+        secondCard = null;
+    }
+
+    void wrongCard()
+    {
+        firstCard.GetComponent<card>().closeCard();
+        secondCard.GetComponent<card>().closeCard();
+    }
+
+    void correctCard()
+    {
+        firstCard.GetComponent<card>().destroyCard();
+        secondCard.GetComponent<card>().destroyCard();
     }
 }
 
