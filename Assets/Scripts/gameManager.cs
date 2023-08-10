@@ -15,6 +15,7 @@ public class gameManager : MonoBehaviour
     public GameObject secondCard;
 
     public AudioClip match;
+    public AudioClip fail;
     public AudioSource audioSource;
 
     int pairNum = 0;
@@ -82,6 +83,8 @@ public class gameManager : MonoBehaviour
 
         if(firstCardName == "rt" || secondCardName == "rt")
         {
+            audioSource.PlayOneShot(fail);
+            
             incorrectCard(firstCard);
             incorrectCard(secondCard);
             InitializeCurrentOpenCard();
@@ -99,6 +102,8 @@ public class gameManager : MonoBehaviour
 
         else
         {
+            audioSource.PlayOneShot(fail);
+
             incorrectCard(firstCard);
             incorrectCard(secondCard);
             InitializeCurrentOpenCard();
