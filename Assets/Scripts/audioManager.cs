@@ -10,7 +10,17 @@ public class audioManager : MonoBehaviour
     void Start()
     {
         audioSource.clip = bgmusic;
-        audioSource.Play();
+
+        if (audioSource.isPlaying)
+        {
+            return;
+        }
+
+        else
+        {
+            audioSource.Play();
+            DontDestroyOnLoad(audioSource);
+        }
     }
 
     // Update is called once per frame
