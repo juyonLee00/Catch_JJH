@@ -55,7 +55,7 @@ public class gameManager : MonoBehaviour
     void Update()
     {
 
-        if (time < 60.0f)
+        if (time < 30.0f)
         {
             time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
@@ -85,7 +85,7 @@ public class gameManager : MonoBehaviour
             }
             float maxScore = PlayerPrefs.GetFloat("bestscore");
             maxScoreTxt.text = maxScore.ToString("N2");
-            //SceneManager.LoadScene("EndScene");
+            
         }
 
         if(openCardNum == 1 && (time - openCardTime) > 5)
