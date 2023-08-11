@@ -85,7 +85,7 @@ public class gameManager : MonoBehaviour
             }
             float maxScore = PlayerPrefs.GetFloat("bestscore");
             maxScoreTxt.text = maxScore.ToString("N2");
-            //SceneManager.LoadScene("EndScene");
+            
         }
 
         if(openCardNum == 1 && (time - openCardTime) > 5)
